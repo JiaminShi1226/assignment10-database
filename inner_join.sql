@@ -1,3 +1,36 @@
+-- Create the database
+
+CREATE DATABASE assignment10;
+
+
+-- Create the tables
+CREATE TABLE Employee (
+  employee_id SERIAL PRIMARY KEY,
+  name TEXT,
+  email TEXT,
+  address TEXT,
+  department_id INT REFERENCES Department(department_id)
+);
+
+CREATE TABLE Department (
+  department_id SERIAL PRIMARY KEY,
+  name TEXT,
+  location TEXT
+);
+
+CREATE TABLE Position (
+  position_id SERIAL PRIMARY KEY,
+  name TEXT,
+  employee_id INT REFERENCES Employee(employee_id)
+);
+
+CREATE TABLE Salary (
+  salary_id SERIAL PRIMARY KEY,
+  amount INT,
+  employee_id INT REFERENCES Employee(employee_id)
+);
+
+
 /*Inner join query joining two tables (Employee and Department):*/
 SELECT Employee.*, Department.name AS department_name
 FROM Employee
